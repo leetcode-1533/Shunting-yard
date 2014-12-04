@@ -11,15 +11,20 @@ int main(){
     init(container,head);
     //val temp;
 
-    push(1,head);
-    push('+',head);
-    push(1,head);
-    push('*',head);
-    push(3,head);
+    push('e',head);
+    push('1',head);
+    push('1',head);
+    push('2',head);
+    push('1',head);
+    push('3',head);
 
     if( 1 ){
-        float temp = eval(head);
-        printf("%f",temp);
+      //  float temp = eval(head);
+        char c[50]="0";
+        stack2str(c,head);
+        printf("%d\n",head_loc(head));
+        printf("%d",atoi(c));
+       // printf("%f",temp);
       //  printf("%c",peek(head));
        // eval(head);
        // printf("%f",two_eval(3.1,'-',12));

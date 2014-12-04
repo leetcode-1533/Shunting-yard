@@ -55,18 +55,38 @@ val peek(struct buffer_stack * node){
     return *((node->head)-1);
 }
 
+
 int str2stack(char * str, struct buffer_stack * node){
     char * char_pointer;
     char_pointer = str;
     while( *char_pointer != '\0'){
-        if( push(*char_pointer,node) == 0 )
-            char_pointer ++;
-        else{
-            return -1;
-        }
+
+
     }
     return 0;
 }
+
+int stack2str(char * str, struct buffer_stack * node){
+    val temp;
+    char char_temp;
+
+    while( head_loc(node) != 0){
+        pop(&temp,node);
+        char_temp = (char) temp;
+        *str = char_temp;
+        str ++;
+    }
+    *str = '\0';
+    return 0;
+}
+
+void single_reverse(struct buffer_stack * input, struct buffer_stack * target){
+    while(1){
+
+    }
+}
+
+
 
 float eval(struct buffer_stack * buffer){
     val container_oper[stack_size] = {0};

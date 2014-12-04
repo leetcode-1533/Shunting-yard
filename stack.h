@@ -37,4 +37,10 @@ float two_eval(val exp1, val para, val exp2);
 
 int encoder(val input);
 
+int stack2str(char * str, struct buffer_stack * node);
+
+void single_reverse(struct buffer_stack * input, struct buffer_stack * target);
+
+void buffer_reverse(struct buffer_stack *head);
+
 
