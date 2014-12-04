@@ -45,6 +45,9 @@ void temp_debug(struct buffer_stack * node){
     }
 }
 
+val peek(struct buffer_stack * node){
+    return *((node->head)-1);
+}
 int str2stack(char * str, struct buffer_stack * node){
     char * char_pointer;
     char_pointer = str;
@@ -67,10 +70,18 @@ float eval(struct buffer_stack * buffer){
     struct buffer_stack * oper;
     struct buffer_stack * numb;
 
+    oper = & con_oper;
+    numb = & con_numb;
+
     init(container_oper,oper);
     init(container_numb,numb);
 
-    int flag = -1;
+    push('@',oper);
+
+    do{
+        temp_debug(buffer);
+    }
+    while( peek(oper) != '@' || head_loc(buffer)!=0 );
 
     return 0;
 

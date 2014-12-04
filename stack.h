@@ -17,6 +17,8 @@ int push(val con, struct buffer_stack * node);
 
 int head_loc(struct buffer_stack * node);
 
+val peek(struct buffer_stack * node);
+
 void temp_debug(struct buffer_stack * node);
 
 int str2stack(char * str, struct buffer_stack * node);

@@ -11,14 +11,15 @@ int main(){
     init(container,head);
     //val temp;
 
-    //int i = 0;
-    //char str[] = "2+1";
-    //if( str2stack(str,head) == 0)
-      //  temp_debug(head);
-      push('c',head);
-      push('c',head);
+    char str[] = "2+1";
+    if( str2stack(str,head) == 0){
+      //  printf("%c",peek(head));
+        eval(head);
+        printf("test");
+     //   eval(head);
+    }
 
-      printf("%d",head_loc(head));
+
   /*  while(temp != 'e'){
         switch(temp){
             case '#':{
