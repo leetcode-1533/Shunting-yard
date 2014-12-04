@@ -3,7 +3,7 @@
 #include "stack.h"
 
 int main(){
-    val container[stack_size] = {'0'};
+    val container[stack_size] = {0};
     struct buffer_stack head_con;
     struct buffer_stack * head;
     head = & head_con;
@@ -15,8 +15,8 @@ int main(){
     if( str2stack(str,head) == 0){
       //  printf("%c",peek(head));
        // eval(head);
-        //printf("%d",encoder('@'));
-        eval(head);
+        printf("%f",two_eval(3.1,'-',12));
+        //eval(head);
     }
 
 

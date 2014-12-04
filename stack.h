@@ -6,7 +6,7 @@
 #define MIDDLE 10
 #define HIGHEST 11
 
-typedef char val;
+typedef float val;
 
 
 struct buffer_stack{
@@ -15,23 +15,13 @@ struct buffer_stack{
     int current_size;
 };
 
-struct float_stack{
-    val * base;
-    val * head;
-};
 
 
 int init(val * con, struct buffer_stack * starter);
 
-int f_init(val * con, struct float_stack * starter);
-
 int pop (val * con, struct buffer_stack * node);
 
-int f_pop (val * con, struct float_stack * node);
-
 int push(val con, struct buffer_stack * node);
-
-int f_push(val con, struct float_stack * node);
 
 int head_loc(struct buffer_stack * node);
 
@@ -43,4 +33,8 @@ int str2stack(char * str, struct buffer_stack * node);
 
 float eval(struct buffer_stack * buffer);
 
+float two_eval(val exp1, val para, val exp2);
+
 int encoder(val input);
+
+

@@ -11,22 +11,6 @@ int init(val * con, struct buffer_stack * starter){
 }
 
 
-int f_init(val * con, struct float_stack * starter){
-    starter -> base = con;
-    starter -> head = starter->base;
-    return 0;
-}
-
-
-int f_pop (val * con, struct float_stack * node){
-    if(node->base == node->head){
-        return -1;
-    }else{
-        node->head = node->head -1;
-        * con = *(node->head);
-        return 0;
-    }
-}
 
 int pop (val * con, struct buffer_stack * node){
     if(node->base == node->head){
@@ -50,27 +34,20 @@ int push(val con, struct buffer_stack * node){
     }
 }
 
-int f_push(val con, struct float_stack * node){
-    if(node->head - node->base >= stack_size )
-    {
-        return -1;
-    }
-    else{
-        *(node->head) = con;
-        (node->head) ++;
-        return 0;
-    }
-}
+
 
 int head_loc(struct buffer_stack * node){
     return (node->head - node->base);
 }
 
+
 void temp_debug(struct buffer_stack * node){
     val temp;
+    char char_temp;
     while(node->head != node->base){
         pop(&temp,node);
-        printf("%c\n",temp);
+        char_temp = (char)temp;
+        printf("%c\n",char_temp);
     }
 }
 
@@ -92,8 +69,8 @@ int str2stack(char * str, struct buffer_stack * node){
 }
 
 float eval(struct buffer_stack * buffer){
-    val container_oper[stack_size] = {'0'};
-    val container_numb[stack_size] = {'0'};
+    val container_oper[stack_size] = {0};
+    val container_numb[stack_size] = {0} ;
     struct buffer_stack con_oper;
     struct buffer_stack con_numb;
 
@@ -108,20 +85,55 @@ float eval(struct buffer_stack * buffer){
 
     push('@',oper);
 
-    do{
-      //  peek()
-      temp_debug(buffer);
+    val inspector;
+    int code;
+    val exp1;
+    val para;
+    val exp2;
 
+    int temp_result;
+
+    do{
+      //temp_debug(buffer);
+
+      //stage 1
+      if(head_loc(buffer) != 0){
+        pop(&inspector,buffer);
+        code = encoder(inspector);
+        if(code == NUM)
+            push(inspector,numb);
+        else if( code > peek(oper) )
+            push(inspector,oper);
+        else if( code <= peek(oper) ){ //exp1 para exp2
+            pop(&exp2,numb);
+            pop(&para,oper);
+            pop(&exp1,numb);
+
+            temp_result = two_eval(exp1,para,exp2);
+        }
+      }
     }
     while( peek(oper) != '@' || head_loc(buffer)!=0 );
 
     return 0;
+}
 
+float two_eval(val exp1, val para, val exp2){
+
+    char code = (char) para;
+    switch(code){
+        case '+' : return (exp1 + exp2); break;
+        case '-' : return (exp1 - exp2); break;
+        case '*' : return (exp1 * exp2); break;
+        case '/' : return (exp1 / exp2); break;
+        default :
+            return -1;
+    }
 }
 
 int encoder(val input){
     int output;
-    int int_input = (int)input;
+    int int_input = (char)input;
     switch(int_input){
         case '+' :
         case '-' : output = MIDDLE; break;
