@@ -14,9 +14,9 @@ int main(){
     char str[] = "2+1";
     if( str2stack(str,head) == 0){
       //  printf("%c",peek(head));
+       // eval(head);
+        //printf("%d",encoder('@'));
         eval(head);
-        printf("test");
-     //   eval(head);
     }
 
 

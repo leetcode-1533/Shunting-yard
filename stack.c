@@ -10,8 +10,25 @@ int init(val * con, struct buffer_stack * starter){
     return 0;
 }
 
-int pop (val * con, struct buffer_stack * node){
 
+int f_init(val * con, struct float_stack * starter){
+    starter -> base = con;
+    starter -> head = starter->base;
+    return 0;
+}
+
+
+int f_pop (val * con, struct float_stack * node){
+    if(node->base == node->head){
+        return -1;
+    }else{
+        node->head = node->head -1;
+        * con = *(node->head);
+        return 0;
+    }
+}
+
+int pop (val * con, struct buffer_stack * node){
     if(node->base == node->head){
         return -1;
     }else{
@@ -22,6 +39,18 @@ int pop (val * con, struct buffer_stack * node){
 }
 
 int push(val con, struct buffer_stack * node){
+    if(node->head - node->base >= stack_size )
+    {
+        return -1;
+    }
+    else{
+        *(node->head) = con;
+        (node->head) ++;
+        return 0;
+    }
+}
+
+int f_push(val con, struct float_stack * node){
     if(node->head - node->base >= stack_size )
     {
         return -1;
@@ -48,6 +77,7 @@ void temp_debug(struct buffer_stack * node){
 val peek(struct buffer_stack * node){
     return *((node->head)-1);
 }
+
 int str2stack(char * str, struct buffer_stack * node){
     char * char_pointer;
     char_pointer = str;
@@ -79,12 +109,27 @@ float eval(struct buffer_stack * buffer){
     push('@',oper);
 
     do{
-        temp_debug(buffer);
+      //  peek()
+      temp_debug(buffer);
+
     }
     while( peek(oper) != '@' || head_loc(buffer)!=0 );
 
     return 0;
 
+}
 
-
+int encoder(val input){
+    int output;
+    int int_input = (int)input;
+    switch(int_input){
+        case '+' :
+        case '-' : output = MIDDLE; break;
+        case '@' : output = LOWEST; break;
+        case '*' :
+        case '/' : output = HIGHEST; break;
+        default :
+            output = NUM;
+    }
+    return output;
 }
