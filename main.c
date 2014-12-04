@@ -11,11 +11,18 @@ int main(){
     init(container,head);
     //val temp;
 
-    char str[] = "2+1";
-    if( str2stack(str,head) == 0){
+    push(1,head);
+    push('+',head);
+    push(1,head);
+    push('*',head);
+    push(3,head);
+
+    if( 1 ){
+        float temp = eval(head);
+        printf("%f",temp);
       //  printf("%c",peek(head));
        // eval(head);
-        printf("%f",two_eval(3.1,'-',12));
+       // printf("%f",two_eval(3.1,'-',12));
         //eval(head);
     }
 

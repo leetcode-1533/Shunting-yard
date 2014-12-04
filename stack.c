@@ -84,6 +84,7 @@ float eval(struct buffer_stack * buffer){
     init(container_numb,numb);
 
     push('@',oper);
+    push(0,numb);
 
     val inspector;
     int code;
@@ -91,7 +92,7 @@ float eval(struct buffer_stack * buffer){
     val para;
     val exp2;
 
-    int temp_result;
+    float temp_result;
 
     do{
       //temp_debug(buffer);
@@ -101,21 +102,34 @@ float eval(struct buffer_stack * buffer){
         pop(&inspector,buffer);
         code = encoder(inspector);
         if(code == NUM)
+        {
             push(inspector,numb);
-        else if( code > peek(oper) )
+        }
+        else if( code > encoder(peek(oper)) )
+        {
             push(inspector,oper);
-        else if( code <= peek(oper) ){ //exp1 para exp2
+        }
+        else if( code <= encoder(peek(oper)) ){ //exp1 para exp2
             pop(&exp2,numb);
             pop(&para,oper);
             pop(&exp1,numb);
-
             temp_result = two_eval(exp1,para,exp2);
+            push(temp_result,numb);
+            push(inspector,buffer);
         }
       }
-    }
-    while( peek(oper) != '@' || head_loc(buffer)!=0 );
+      //stag two
+      else if(peek(oper) != '@'){
+            pop(&exp2,numb);
+            pop(&para,oper);
+            pop(&exp1,numb);
+            temp_result = two_eval(exp1,para,exp2);
+            push(temp_result,numb);
+      }
+      }while( peek(oper) != '@' || head_loc(buffer) != 0 );
 
-    return 0;
+    pop(&temp_result,numb);
+    return temp_result;
 }
 
 float two_eval(val exp1, val para, val exp2){
