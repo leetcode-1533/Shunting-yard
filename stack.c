@@ -33,6 +33,10 @@ int push(val con, struct buffer_stack * node){
     }
 }
 
+int head_loc(struct buffer_stack * node){
+    return (node->head - node->base);
+}
+
 void temp_debug(struct buffer_stack * node){
     val temp;
     while(node->head != node->base){
@@ -52,4 +56,24 @@ int str2stack(char * str, struct buffer_stack * node){
         }
     }
     return 0;
+}
+
+float eval(struct buffer_stack * buffer){
+    val container_oper[stack_size] = {'0'};
+    val container_numb[stack_size] = {'0'};
+    struct buffer_stack con_oper;
+    struct buffer_stack con_numb;
+
+    struct buffer_stack * oper;
+    struct buffer_stack * numb;
+
+    init(container_oper,oper);
+    init(container_numb,numb);
+
+    int flag = -1;
+
+    return 0;
+
+
+
 }

@@ -9,12 +9,16 @@ int main(){
     head = & head_con;
 
     init(container,head);
-    val temp;
+    //val temp;
 
-    int i = 0;
-    char str[] = "2+1";
-    if( str2stack(str,head) == 0)
-        temp_debug(head);
+    //int i = 0;
+    //char str[] = "2+1";
+    //if( str2stack(str,head) == 0)
+      //  temp_debug(head);
+      push('c',head);
+      push('c',head);
+
+      printf("%d",head_loc(head));
   /*  while(temp != 'e'){
         switch(temp){
             case '#':{
