@@ -40,3 +40,16 @@ void temp_debug(struct buffer_stack * node){
         printf("%c\n",temp);
     }
 }
+
+int str2stack(char * str, struct buffer_stack * node){
+    char * char_pointer;
+    char_pointer = str;
+    while( *char_pointer != '\0'){
+        if( push(*char_pointer,node) == 0 )
+            char_pointer ++;
+        else{
+            return -1;
+        }
+    }
+    return 0;
+}
