@@ -16,10 +16,22 @@ int main(){
     flo = & flo_con;
     init(flo_container,flo);
 
-    push('1',head);
-    push('/',head);
+    push('4',head);
+    push('*',head);
     push('3',head);
+    push('-',head);
+    push('2',head);
+    push('+',head);
+    push('4',head);
+    push('*',head);
+    push('5',head);
+    push('-',head);
+    push('6',head);
+    push('*',head);
+    push('6',head);
+    push('*',head);
     push('3',head);
+
 
   /*  if( 1 ){
         float temp = eval(head);

@@ -210,10 +210,7 @@ int construct_buffer(struct buffer_stack * input,struct buffer_stack * flo){
 
     val temp;
     char c[50] = "0";
-    /*
-    char char_buffer[20];
-    char * iter;
-    iter = char_buffer;*/
+
 
     while(head_loc(input) != 0){
         pop(&temp,input);
