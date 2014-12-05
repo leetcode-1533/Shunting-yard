@@ -80,12 +80,33 @@ int stack2str(char * str, struct buffer_stack * node){
     return 0;
 }
 
-void single_reverse(struct buffer_stack * input, struct buffer_stack * target){
-    while(1){
-
+int single_reverse(struct buffer_stack * input, struct buffer_stack * target){
+    val temp;
+    while( head_loc(input) != 0 ){
+        pop(&temp,input);
+        push(temp,target);
     }
+    return 0;
 }
 
+int buffer_reverse(struct buffer_stack * head){
+    val f_container_temp[stack_size] = {0};
+    struct buffer_stack f_temp_con;
+    struct buffer_stack * f_temp;
+    f_temp = & f_temp_con;
+    init(f_container_temp,f_temp);
+
+    val s_container_temp[stack_size] = {0};
+    struct buffer_stack s_temp_con;
+    struct buffer_stack * s_temp;
+    s_temp = & s_temp_con;
+    init(s_container_temp,s_temp);
+
+    single_reverse(head,f_temp);
+    single_reverse(f_temp,s_temp); //s_temp==head
+    single_reverse(s_temp,head); //head = f_temp
+    return 0;
+}
 
 
 float eval(struct buffer_stack * buffer){
@@ -178,4 +199,37 @@ int encoder(val input){
             output = NUM;
     }
     return output;
+}
+
+int construct_buffer(struct buffer_stack * input,struct buffer_stack * flo){
+    val se_container[stack_size] = {0};
+    struct buffer_stack  se_con;
+    struct buffer_stack * se;
+    se = & se_con;
+    init(se_container,se);
+
+    val temp;
+    char c[50] = "0";
+    /*
+    char char_buffer[20];
+    char * iter;
+    iter = char_buffer;*/
+
+    while(head_loc(input) != 0){
+        pop(&temp,input);
+        if(encoder(temp) == NUM){
+            push(temp,se);
+        }else{
+            buffer_reverse(se);
+            stack2str(c,se);
+            push(atoi(c),flo);
+            push(temp,flo);
+            init(se_container,se);
+        }
+    }
+    buffer_reverse(se);
+    stack2str(c,se);
+    push(atoi(c),flo);
+
+    return 0;
 }

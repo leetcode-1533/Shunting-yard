@@ -39,8 +39,8 @@ int encoder(val input);
 
 int stack2str(char * str, struct buffer_stack * node);
 
-void single_reverse(struct buffer_stack * input, struct buffer_stack * target);
+int single_reverse(struct buffer_stack * input, struct buffer_stack * target);
 
-void buffer_reverse(struct buffer_stack *head);
+int buffer_reverse(struct buffer_stack * head);
 
-
+int contruct_buffer(struct buffer_stack * input, struct buffer_stack * flo );
