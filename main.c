@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "stack.h"
+#include "queue.h"
 
 int main(){
     val container[stack_size] = {0};
@@ -43,7 +44,15 @@ int main(){
         //eval(head);
     }*/
     float temp = eval(head);
-    printf("%f",temp);
+    printf("%f\n",temp);
+
+    val alg_temp[stack_size] = {0};
+    struct alg_queue con_queue;
+    struct alg_queue * queue;
+    queue = & con_queue;
+    alg_init(alg_temp,queue);
+
+    printf("%d",alg_loc(queue));
 
     //buffer_reverse(head);
   //  temp_debug(head);

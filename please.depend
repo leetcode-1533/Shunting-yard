@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1417869491 source:/home/y1275963/please/main.c
+1417883008 source:/home/y1275963/please/main.c
 	<stdio.h>
 	<stdlib.h>
 	"stack.h"
 
-1417869338 /home/y1275963/please/stack.h
+1417883069 /home/y1275963/please/stack.h
 
 1417869482 source:/home/y1275963/please/stack.c
 	"stack.h"

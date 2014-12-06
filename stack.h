@@ -16,7 +16,6 @@ struct buffer_stack{
 };
 
 
-
 int init(val * con, struct buffer_stack * starter);
 
 int pop (val * con, struct buffer_stack * node);
