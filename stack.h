@@ -26,14 +26,6 @@ int head_loc(struct buffer_stack * node);
 
 val peek(struct buffer_stack * node);
 
-void temp_debug(struct buffer_stack * node);
-
-
-float eval(struct buffer_stack * buffer);
-
-float two_eval(val exp1, val para, val exp2);
-
-int encoder(val input);
 
 int stack2str(char * str, struct buffer_stack * node);
 
@@ -41,4 +33,3 @@ int single_reverse(struct buffer_stack * input, struct buffer_stack * target);
 
 int buffer_reverse(struct buffer_stack * head);
 
-int contruct_buffer(struct buffer_stack * input, struct buffer_stack * flo );

@@ -1,12 +1,24 @@
 # depslib dependency file v1.0
-1417883008 source:/home/y1275963/please/main.c
+1417887440 source:/home/y1275963/please/main.c
 	<stdio.h>
 	<stdlib.h>
-	"stack.h"
+	"cal.h"
 
-1417883069 /home/y1275963/please/stack.h
+1417887440 /home/y1275963/please/stack.h
 
-1417869482 source:/home/y1275963/please/stack.c
+1417887440 source:/home/y1275963/please/stack.c
 	"stack.h"
 	<stdio.h>
+
+1417887471 /home/y1275963/please/queue.h
+
+1417887182 source:/home/y1275963/please/queue.c
+	"queue.h"
+
+1417887486 source:/home/y1275963/please/cal.c
+	"cal.h"
+
+1417887486 /home/y1275963/please/cal.h
+	"stack.h"
+	"queue.h"
 
