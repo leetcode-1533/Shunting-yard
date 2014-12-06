@@ -55,9 +55,24 @@ val peek(struct buffer_stack * node){
     return *((node->head)-1);
 }
 
+int encoder(val input){
+    int output;
+    int int_input = (char)input;
+    switch(int_input){
+        case '+' :
+        case '-' : output = MIDDLE; break;
+        case '@' : output = LOWEST; break;
+        case '*' :
+        case '/' : output = HIGHEST; break;
+        default :
+            output = NUM;
+    }
+    return output;
+}
 
 
-int stack2str(char * str, struct buffer_stack * node){
+
+/*int stack2str(char * str, struct buffer_stack * node){
     val temp;
     char char_temp;
 
@@ -97,8 +112,77 @@ int buffer_reverse(struct buffer_stack * head){
     single_reverse(f_temp,s_temp); //s_temp==head
     single_reverse(s_temp,head); //head = f_temp
     return 0;
+}*/
+
+
+float stack2val(struct buffer_stack * node){
+    int i = 0;
+    float temp_sum = 0.0;
+    val temp_elem;
+    char char_temp;
+    float float_temp;
+    while(head_loc(node) != 0){
+        pop(&temp_elem, node);
+        char_temp = (char)temp_elem;
+        char_temp -= '0';
+        float_temp = char_temp + 0.0;
+        temp_sum += float_temp*pow(10,i++);
+    }
+    return temp_sum;
 }
 
+int construct_buffer(struct buffer_stack * input,struct buffer_stack * flo){
+    val se_container[stack_size] = {0};
+    struct buffer_stack  se_con;
+    struct buffer_stack * se;
+    se = & se_con;
+    init(se_container,se);
+
+    val temp;
+    /*char c[50] = "0";
+
+
+    while(head_loc(input) != 0){
+        pop(&temp,input);
+        if(encoder(temp) == NUM){
+            push(temp,se);
+        }else{
+            buffer_reverse(se);
+            stack2str(c,se);
+            push(atoi(c),flo);
+            push(temp,flo);
+            init(se_container,se);
+        }
+    }
+    buffer_reverse(se);
+    stack2str(c,se);
+    push(atoi(c),flo);*/
+    while(head_loc(input) != 0){
+        pop(&temp,input);
+        if(encoder(temp) == NUM){
+            push(temp,se);
+        }
+        else{
+            push(stack2val(se),flo);
+            push(temp,flo);
+        }
+        }
+        push(stack2val(se),flo);
+    return 0;
+}
+
+float two_eval(val exp1, val para, val exp2){
+
+    char code = (char) para;
+    switch(code){
+        case '+' : return (exp1 + exp2); break;
+        case '-' : return (exp1 - exp2); break;
+        case '*' : return (exp1 * exp2); break;
+        case '/' : return (exp1 / exp2); break;
+        default :
+            return -1;
+    }
+}
 
 float eval(struct buffer_stack * buffer){
 
@@ -174,60 +258,9 @@ float eval(struct buffer_stack * buffer){
     return temp_result;
 }
 
-float two_eval(val exp1, val para, val exp2){
-
-    char code = (char) para;
-    switch(code){
-        case '+' : return (exp1 + exp2); break;
-        case '-' : return (exp1 - exp2); break;
-        case '*' : return (exp1 * exp2); break;
-        case '/' : return (exp1 / exp2); break;
-        default :
-            return -1;
-    }
-}
-
-int encoder(val input){
-    int output;
-    int int_input = (char)input;
-    switch(int_input){
-        case '+' :
-        case '-' : output = MIDDLE; break;
-        case '@' : output = LOWEST; break;
-        case '*' :
-        case '/' : output = HIGHEST; break;
-        default :
-            output = NUM;
-    }
-    return output;
-}
-
-int construct_buffer(struct buffer_stack * input,struct buffer_stack * flo){
-    val se_container[stack_size] = {0};
-    struct buffer_stack  se_con;
-    struct buffer_stack * se;
-    se = & se_con;
-    init(se_container,se);
-
-    val temp;
-    char c[50] = "0";
 
 
-    while(head_loc(input) != 0){
-        pop(&temp,input);
-        if(encoder(temp) == NUM){
-            push(temp,se);
-        }else{
-            buffer_reverse(se);
-            stack2str(c,se);
-            push(atoi(c),flo);
-            push(temp,flo);
-            init(se_container,se);
-        }
-    }
-    buffer_reverse(se);
-    stack2str(c,se);
-    push(atoi(c),flo);
 
-    return 0;
-}
+
+
+
