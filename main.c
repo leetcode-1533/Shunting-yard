@@ -29,6 +29,7 @@ int main(){
     push('6',head);
     push('*',head);
     push('6',head);
+    push('6',head);
     push('*',head);
     push('3',head);
 
