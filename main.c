@@ -10,11 +10,7 @@ int main(){
     init(container,head);
     //val temp;
 
-    val flo_container[stack_size] = {0};
-    struct buffer_stack  flo_con;
-    struct buffer_stack * flo;
-    flo = & flo_con;
-    init(flo_container,flo);
+
 
     push('4',head);
     push('*',head);
@@ -46,8 +42,7 @@ int main(){
        // printf("%f",two_eval(3.1,'-',12));
         //eval(head);
     }*/
-    construct_buffer(head,flo);
-    float temp = eval(flo);
+    float temp = eval(head);
     printf("%f",temp);
 
     //buffer_reverse(head);

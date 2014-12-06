@@ -29,7 +29,6 @@ val peek(struct buffer_stack * node);
 
 void temp_debug(struct buffer_stack * node);
 
-int str2stack(char * str, struct buffer_stack * node);
 
 float eval(struct buffer_stack * buffer);
 

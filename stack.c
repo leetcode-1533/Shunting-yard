@@ -56,15 +56,6 @@ val peek(struct buffer_stack * node){
 }
 
 
-int str2stack(char * str, struct buffer_stack * node){
-    char * char_pointer;
-    char_pointer = str;
-    while( *char_pointer != '\0'){
-
-
-    }
-    return 0;
-}
 
 int stack2str(char * str, struct buffer_stack * node){
     val temp;
@@ -110,6 +101,16 @@ int buffer_reverse(struct buffer_stack * head){
 
 
 float eval(struct buffer_stack * buffer){
+
+    val flo_container[stack_size] = {0};
+    struct buffer_stack  flo_con;
+    struct buffer_stack * flo;
+    flo = & flo_con;
+    init(flo_container,flo);
+
+    construct_buffer(buffer,flo);
+
+
     val container_oper[stack_size] = {0};
     val container_numb[stack_size] = {0} ;
     struct buffer_stack con_oper;
@@ -139,8 +140,8 @@ float eval(struct buffer_stack * buffer){
       //temp_debug(buffer);
 
       //stage 1
-      if(head_loc(buffer) != 0){
-        pop(&inspector,buffer);
+      if(head_loc(flo) != 0){
+        pop(&inspector,flo);
         code = encoder(inspector);
         if(code == NUM)
         {
@@ -156,7 +157,7 @@ float eval(struct buffer_stack * buffer){
             pop(&exp1,numb);
             temp_result = two_eval(exp1,para,exp2);
             push(temp_result,numb);
-            push(inspector,buffer);
+            push(inspector,flo);
         }
       }
       //stag two
@@ -167,7 +168,7 @@ float eval(struct buffer_stack * buffer){
             temp_result = two_eval(exp1,para,exp2);
             push(temp_result,numb);
       }
-      }while( peek(oper) != '@' || head_loc(buffer) != 0 );
+      }while( peek(oper) != '@' || head_loc(flo) != 0 );
 
     pop(&temp_result,numb);
     return temp_result;
